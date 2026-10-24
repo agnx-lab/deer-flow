@@ -2,7 +2,14 @@
 // 用法：node deer-desktop.mjs <action> [args]
 //   action: inspect | shot <path> | type <text> | click <selectorOrText> | keys <key> | eval <expr>
 
-import WebSocket from "/Users/apple/Documents/github/agnx/node_modules/ws/index.js";
+import { createRequire } from "node:module";
+
+// ws 由宿主 Agnx 仓提供；用 AGNX_MONOREPO_ROOT 定位，不写死本机绝对路径
+const require_ = createRequire(import.meta.url);
+const wsEntry = process.env.AGNX_MONOREPO_ROOT
+  ? `${process.env.AGNX_MONOREPO_ROOT}/node_modules/ws/index.js`
+  : "ws";
+const WebSocket = require_(wsEntry);
 
 const BASE = process.env.AGNX_CDP_URL || "http://127.0.0.1:9333";
 
