@@ -1,0 +1,52 @@
+{
+  "id": "deer-flow",
+  "name": "DeerFlow",
+  "version": "0.1.0",
+  "description": "DeerFlow 2.0 — 字节开源的长周期 SuperAgent harness（LangGraph 后端 + Next.js 前端）",
+  "engines": {
+    "agnx": ">=1.0.0"
+  },
+  "main": "./dist/index.js",
+  "icon": "./.agnx/assets/icon.png",
+  "iconDark": "./.agnx/assets/icon-dark.png",
+  "platforms": {
+    "desktop": "supported",
+    "web": "partial",
+    "mobile": "unsupported"
+  },
+  "guest": {
+    "kind": "web",
+    "auth": "none",
+    "capabilities": ["websocket"],
+    "preferStrategy": "auto"
+  },
+  "sidecar": {
+    "supervised": true,
+    "ensureTool": ".agnx/tools/ensure-deer-flow.mjs",
+    "stateFile": "deer-flow.json",
+    "defaultPort": 8122,
+    "lifecycle": "lazy",
+    "label": "DeerFlow 服务"
+  },
+  "contributes": {
+    "primarySegments": [
+      {
+        "id": "deer-flow",
+        "label": "DeerFlow",
+        "order": 60
+      }
+    ],
+    "commands": [
+      {
+        "id": "deer-flow.open",
+        "title": "DeerFlow"
+      }
+    ],
+    "panels": [
+      {
+        "id": "deer-flow.main",
+        "title": "DeerFlow"
+      }
+    ]
+  }
+}

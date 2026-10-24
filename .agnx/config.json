@@ -1,0 +1,10 @@
+{
+  "appId": "deer-flow",
+  "installState": "installed",
+  "launchMode": "packaged",
+  "source": {
+    "kind": "github",
+    "url": "https://github.com/bytedance/deer-flow"
+  },
+  "updatedAt": "2026-10-19T21:03:18.123Z"
+}

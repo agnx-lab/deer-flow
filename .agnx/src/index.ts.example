@@ -1,0 +1,38 @@
+// 场景：`.agnx/` 胶水模板最小入口 — copy 后改 appId / 贡献点。
+import type { WorkspaceAppHostApi, WorkspaceAppModule } from "@agnx-lab/app-sdk";
+
+export const appId = "demo";
+
+export function activate(host: WorkspaceAppHostApi): void {
+  host.registerPrimarySegment({
+    id: "demo",
+    appId,
+    label: "Demo",
+    order: 60,
+    itemProviderId: "demo.items",
+  });
+  host.registerItemProvider({
+    id: "demo.items",
+    appId,
+    subscribe: (listener) => {
+      listener([]);
+      return () => undefined;
+    },
+  });
+  host.registerMiniApp({
+    id: "demo.main",
+    appId,
+    title: "Demo",
+  });
+  host.registerCommand({
+    id: "demo.open",
+    appId,
+    title: "打开 Demo",
+    callback: () => {
+      void host.openMiniAppTab({ appId, panelId: "demo.main" });
+    },
+  });
+}
+
+const module: WorkspaceAppModule = { appId, activate };
+export default module;
